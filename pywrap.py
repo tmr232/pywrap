@@ -5,7 +5,8 @@ def _wrap(functype, name, library, restype, params, errcheck=None):
     prototype = functype(restype, *(param.type for param in params))
     paramflags = tuple(param.paramflags for param in params)
     wrapper = prototype((name, library), paramflags)
-    wrapper.errcheck = errcheck
+    if errcheck:
+        wrapper.errcheck = errcheck
 
     return wrapper
 
@@ -87,4 +88,9 @@ class Errcheck(object):
     def expect_no_error(result, func, args):
         if ctypes.get_last_error():
             raise ctypes.WinError()
+        return result
+
+    @staticmethod
+    def print_all(result, func, args):
+        print result, func, args
         return result
