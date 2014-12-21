@@ -3,11 +3,12 @@ pywrap
 
 Simple function-wrapping API with ctypes.
 
-
 Usage
 -----
 
 Replace this:
+
+::
 
     prototype = ctypes.WINFUNCTYPE(wintypes.HANDLE, wintypes.UINT, wintypes.HANDLE)
     paramflags = (1, "uFormat"), (1, "hMem")
@@ -15,6 +16,8 @@ Replace this:
     SetClipboardData.errcheck = null_errcheck
 
 With this:
+
+::
 
     SetClipboardData = pywrap.wrap_winapi(name="SetClipboardData",
                                             library=user32,
