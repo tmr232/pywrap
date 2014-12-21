@@ -8,7 +8,7 @@ Usage
 
 Replace this:
 
-::
+.. code:: python
 
     prototype = ctypes.WINFUNCTYPE(wintypes.HANDLE, wintypes.UINT, wintypes.HANDLE)
     paramflags = (1, "uFormat"), (1, "hMem")
@@ -17,7 +17,7 @@ Replace this:
 
 With this:
 
-::
+.. code:: python
 
     SetClipboardData = pywrap.wrap_winapi(name="SetClipboardData",
                                             library=user32,
